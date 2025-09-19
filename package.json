@@ -2,7 +2,7 @@
   "name": "TabOut",
   "displayName": "TabOut",
   "description": "Tab out of quotes, brackets, etc",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "publisher": "albert",
   "engines": {
     "vscode": "^1.22.0"
@@ -33,6 +33,11 @@
           "type": "boolean",
           "default": false,
           "description": "Disables the TabOut extension by default"
+        },
+        "tabout.jumpFromSemicolonToCurlyBracket": {
+          "type": "boolean",
+          "default": false,
+          "description": "Jump from in front of a semicolon to in front of a curly bracket."
         },
         "tabout.charactersToTabOutFrom": {
           "type": "array",

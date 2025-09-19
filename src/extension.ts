@@ -56,6 +56,16 @@ export function activate(context: vscode.ExtensionContext) {
 
          //Previous character special?
         let previousCharacter = getPreviousChar(currentPositionInLine, currentLineText);
+        let jumpFromSemicolon = vscode.workspace.getConfiguration("tabout").get('jumpFromSemicolonToCurlyBracket');
+        if (jumpFromSemicolon && previousCharacter === ';') {
+            let nextCurlyBracket = currentLineText.indexOf('{', currentPositionInLine);
+            if (nextCurlyBracket > -1) {
+                let nextCursorPosition = new vscode.Position(editor.selection.active.line, nextCurlyBracket);
+                editor.selection = new vscode.Selection(nextCursorPosition, nextCursorPosition);
+                return;
+            }
+        }
+        
         let characterInfo = characterSetsToTabOutFrom().find(o => o.open == previousCharacter || o.close == previousCharacter)
 
         if(characterInfo !== undefined)
